@@ -1,0 +1,57 @@
+{
+  "segments": [
+    {
+      "id": "seg-hr",
+      "name": "Human Resources Segment",
+      "cidr": "10.10.1.0/24",
+      "security_zone": "Internal-General",
+      "description": "Standard corporate workstations for HR staff. Should only access general intranet and HR SaaS tools."
+    },
+    {
+      "id": "seg-finance",
+      "name": "Finance Segment",
+      "cidr": "10.10.2.0/24",
+      "security_zone": "Finance-Restricted",
+      "description": "Dedicated subnet for finance team workstations and financial processing systems."
+    },
+    {
+      "id": "seg-it",
+      "name": "IT Administration Segment",
+      "cidr": "10.10.3.0/24",
+      "security_zone": "Management-Restricted",
+      "description": "Privileged administration network for IT operations, jump hosts, and network engineering."
+    }
+  ],
+  "resources": [
+    {
+      "id": "res-fin-db",
+      "name": "Finance Core Database",
+      "ip": "10.10.2.50",
+      "port": 5432,
+      "protocol": "TCP",
+      "segment_id": "seg-finance",
+      "is_critical": true,
+      "description": "High-security PostgreSQL database storing company ledger, bank accounts, and payroll records."
+    },
+    {
+      "id": "res-fin-web",
+      "name": "Finance Internal Portal",
+      "ip": "10.10.2.20",
+      "port": 443,
+      "protocol": "TCP",
+      "segment_id": "seg-finance",
+      "is_critical": false,
+      "description": "Internal web portal used for corporate expense reports and travel reimbursements."
+    },
+    {
+      "id": "res-it-jumpbox",
+      "name": "IT Management Jumpbox",
+      "ip": "10.10.3.10",
+      "port": 22,
+      "protocol": "TCP",
+      "segment_id": "seg-it",
+      "is_critical": false,
+      "description": "Bastion server used by IT administrators for secure SSH access into production infrastructure."
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "policies": [
+    {
+      "id": "RULE-010",
+      "name": "Allow IT SSH to Management Jumpbox",
+      "source_segment": "seg-it",
+      "destination_resource": "res-it-jumpbox",
+      "port": 22,
+      "protocol": "TCP",
+      "action": "ALLOW",
+      "priority": 10,
+      "description": "Permits IT administrators secure SSH access to the management bastion."
+    },
+    {
+      "id": "RULE-020",
+      "name": "Allow Finance to Finance Core Database",
+      "source_segment": "seg-finance",
+      "destination_resource": "res-fin-db",
+      "port": 5432,
+      "protocol": "TCP",
+      "action": "ALLOW",
+      "priority": 20,
+      "description": "Authorized database queries from verified Finance staff machines."
+    },
+    {
+      "id": "RULE-030",
+      "name": "Allow Corporate Users to Finance Expense Portal",
+      "source_segment": "*",
+      "destination_resource": "res-fin-web",
+      "port": 443,
+      "protocol": "TCP",
+      "action": "ALLOW",
+      "priority": 30,
+      "description": "Enables all corporate users (HR, Finance, IT) to submit expense reports over HTTPS."
+    },
+    {
+      "id": "RULE-999",
+      "name": "Default Deny All",
+      "source_segment": "*",
+      "destination_resource": "*",
+      "port": null,
+      "protocol": "ANY",
+      "action": "DENY",
+      "priority": 999,
+      "description": "Implicit default-deny baseline for zero-trust security."
+    }
+  ]
+}

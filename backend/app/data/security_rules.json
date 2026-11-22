@@ -1,0 +1,22 @@
+{
+  "guardrails": [
+    {
+      "id": "SG-01",
+      "name": "HR to Finance Database Isolation",
+      "forbidden_source": "seg-hr",
+      "forbidden_destination": "res-fin-db",
+      "severity": "CRITICAL",
+      "description": "The HR subnet must NEVER have direct access to the Finance Core Database.",
+      "rationale": "Violates Segregation of Duties (SoD) under SOC2, ISO 27001, and PCI-DSS standards. HR applications should only interface with financial systems through vetted, authenticated microservices, never direct raw database connections."
+    },
+    {
+      "id": "SG-02",
+      "name": "Block Untrusted Direct Access to Management Jumpbox",
+      "forbidden_source": "seg-hr",
+      "forbidden_destination": "res-it-jumpbox",
+      "severity": "HIGH",
+      "description": "Non-IT departments are barred from administrative bastion jumpboxes.",
+      "rationale": "Prevents lateral movement and privilege escalation by non-administrative corporate users."
+    }
+  ]
+}
